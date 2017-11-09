@@ -1,4 +1,4 @@
-package org.chenxing.apigateway.core;
+package org.chenxing.apigateway.core.ribbon;
 
 import org.springframework.cloud.netflix.ribbon.support.RibbonRequestCustomizer;
 import org.springframework.cloud.netflix.zuul.filters.route.RibbonCommandContext;

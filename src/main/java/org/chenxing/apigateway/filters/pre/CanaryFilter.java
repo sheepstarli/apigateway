@@ -4,6 +4,8 @@ import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import org.chenxing.apigateway.filters.support.ApiGatewayFilterConstants;
 
+import static org.chenxing.apigateway.filters.support.ApiGatewayFilterConstants.CTX_LOAD_BALANCER_KEY;
+
 /**
  * CanaryFilter
  *
@@ -32,7 +34,7 @@ public class CanaryFilter extends ZuulFilter {
     @Override
     public Object run() {
         RequestContext currentContext = RequestContext.getCurrentContext();
-//        currentContext.getRequest()
+        currentContext.set(CTX_LOAD_BALANCER_KEY, "a");
         return null;
     }
 }

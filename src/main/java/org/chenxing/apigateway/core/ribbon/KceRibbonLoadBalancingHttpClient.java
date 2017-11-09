@@ -1,4 +1,4 @@
-package org.chenxing.apigateway.core;
+package org.chenxing.apigateway.core.ribbon;
 
 import com.netflix.client.config.IClientConfig;
 import com.netflix.loadbalancer.ILoadBalancer;

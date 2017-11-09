@@ -1,11 +1,10 @@
-package org.chenxing.apigateway.core;
+package org.chenxing.apigateway.core.ribbon;
 
 import org.springframework.cloud.netflix.ribbon.SpringClientFactory;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
 import org.springframework.cloud.netflix.zuul.filters.route.RibbonCommand;
 import org.springframework.cloud.netflix.zuul.filters.route.RibbonCommandContext;
 import org.springframework.cloud.netflix.zuul.filters.route.ZuulFallbackProvider;
-import org.springframework.cloud.netflix.zuul.filters.route.apache.HttpClientRibbonCommand;
 import org.springframework.cloud.netflix.zuul.filters.route.support.AbstractRibbonCommandFactory;
 
 import java.util.Collections;
@@ -43,15 +42,8 @@ public class KceRibbonCommandFactory extends AbstractRibbonCommandFactory {
         final KceRibbonLoadBalancingHttpClient client = this.clientFactory.getClient(
                 serviceId, KceRibbonLoadBalancingHttpClient.class);
         client.setLoadBalancer(this.clientFactory.getLoadBalancer(serviceId));
-//        Object loadBalancerKey = null;
-//        if (context instanceof KceRibbonCommandContext) {
-//            KceRibbonCommandContext kceRibbonCommandContext = (KceRibbonCommandContext) context;
-//            loadBalancerKey = kceRibbonCommandContext.getLoadBalancerKey();
-//        }
-        return new HttpClientRibbonCommand(serviceId, client, context, zuulProperties, zuulFallbackProvider,
+        return new KceRibbonCommand(serviceId, client, context, zuulProperties, zuulFallbackProvider,
                 clientFactory.getClientConfig(serviceId));
-//        return new KceRibbonCommand(serviceId, client, context, zuulProperties, zuulFallbackProvider,
-//                clientFactory.getClientConfig(serviceId));
     }
 
 }
