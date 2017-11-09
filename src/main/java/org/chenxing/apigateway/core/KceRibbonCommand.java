@@ -15,7 +15,14 @@ import org.springframework.cloud.netflix.zuul.filters.route.apache.HttpClientRib
  */
 public class KceRibbonCommand extends HttpClientRibbonCommand {
 
-    public KceRibbonCommand(String commandKey, RibbonLoadBalancingHttpClient client, RibbonCommandContext context, ZuulProperties zuulProperties, ZuulFallbackProvider zuulFallbackProvider, IClientConfig config) {
+
+    public KceRibbonCommand(String commandKey, RibbonLoadBalancingHttpClient client, RibbonCommandContext context,
+                            ZuulProperties zuulProperties, ZuulFallbackProvider zuulFallbackProvider, IClientConfig config) {
         super(commandKey, client, context, zuulProperties, zuulFallbackProvider, config);
+    }
+
+    @Override
+    protected KceRibbonApacheHttpRequest createRequest() throws Exception {
+        return new KceRibbonApacheHttpRequest(this.context);
     }
 }

@@ -10,6 +10,8 @@ import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
  */
 public interface ApiGatewayFilterConstants extends FilterConstants {
 
+    String CTX_LOAD_BALANCER_KEY = "CTX.loadBalancerKey";
+
 
     /**
      * pre filter: {@link org.chenxing.apigateway.filters.pre.CanaryFilter}

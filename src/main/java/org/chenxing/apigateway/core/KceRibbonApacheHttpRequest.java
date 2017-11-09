@@ -12,8 +12,11 @@ import org.springframework.cloud.netflix.zuul.filters.route.RibbonCommandContext
 public class KceRibbonApacheHttpRequest extends RibbonApacheHttpRequest {
 
     public KceRibbonApacheHttpRequest(RibbonCommandContext context) {
-        context
         super(context);
+        if (context instanceof KceRibbonCommandContext) {
+            KceRibbonCommandContext kceRibbonCommandContext = (KceRibbonCommandContext) context;
+            setLoadBalancerKey(kceRibbonCommandContext.getLoadBalancerKey());
+        }
     }
 
 }

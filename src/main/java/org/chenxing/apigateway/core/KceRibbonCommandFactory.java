@@ -1,7 +1,6 @@
 package org.chenxing.apigateway.core;
 
 import org.springframework.cloud.netflix.ribbon.SpringClientFactory;
-import org.springframework.cloud.netflix.ribbon.apache.RibbonLoadBalancingHttpClient;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
 import org.springframework.cloud.netflix.zuul.filters.route.RibbonCommand;
 import org.springframework.cloud.netflix.zuul.filters.route.RibbonCommandContext;
@@ -44,9 +43,15 @@ public class KceRibbonCommandFactory extends AbstractRibbonCommandFactory {
         final KceRibbonLoadBalancingHttpClient client = this.clientFactory.getClient(
                 serviceId, KceRibbonLoadBalancingHttpClient.class);
         client.setLoadBalancer(this.clientFactory.getLoadBalancer(serviceId));
-
-        return new KceRibbonCommand(serviceId, client, context, zuulProperties, zuulFallbackProvider,
+//        Object loadBalancerKey = null;
+//        if (context instanceof KceRibbonCommandContext) {
+//            KceRibbonCommandContext kceRibbonCommandContext = (KceRibbonCommandContext) context;
+//            loadBalancerKey = kceRibbonCommandContext.getLoadBalancerKey();
+//        }
+        return new HttpClientRibbonCommand(serviceId, client, context, zuulProperties, zuulFallbackProvider,
                 clientFactory.getClientConfig(serviceId));
+//        return new KceRibbonCommand(serviceId, client, context, zuulProperties, zuulFallbackProvider,
+//                clientFactory.getClientConfig(serviceId));
     }
 
 }
