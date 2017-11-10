@@ -1,7 +1,7 @@
 package org.chenxing.apigateway.conf;
 
 import org.chenxing.apigateway.core.ribbon.KceRibbonCommandFactory;
-import org.chenxing.apigateway.core.ribbon.KceRibbonConfiguration;
+import org.chenxing.ribbon.conf.KceRibbonConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.ribbon.RibbonClients;
 import org.springframework.cloud.netflix.ribbon.SpringClientFactory;

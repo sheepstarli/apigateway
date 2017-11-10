@@ -34,7 +34,7 @@ public class CanaryFilter extends ZuulFilter {
     @Override
     public Object run() {
         RequestContext currentContext = RequestContext.getCurrentContext();
-        currentContext.set(CTX_LOAD_BALANCER_KEY, "a");
+        currentContext.set(CTX_LOAD_BALANCER_KEY, "book-a");
         return null;
     }
 }
