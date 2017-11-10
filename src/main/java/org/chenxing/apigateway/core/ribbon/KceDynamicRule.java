@@ -1,6 +1,7 @@
 package org.chenxing.apigateway.core.ribbon;
 
 import com.netflix.loadbalancer.AbstractServerPredicate;
+import com.netflix.loadbalancer.CompositePredicate;
 import com.netflix.loadbalancer.IRule;
 import com.netflix.loadbalancer.PredicateBasedRule;
 
@@ -12,11 +13,13 @@ import com.netflix.loadbalancer.PredicateBasedRule;
  */
 public class KceDynamicRule extends PredicateBasedRule {
 
-    private AbstractServerPredicate predicate;
+    private CompositePredicate predicate;
 
     public KceDynamicRule() {
         super();
-        this.predicate = new KceDynamicPredicate();
+        this.predicate = CompositePredicate.withPredicate(new KceDynamicPredicate())
+                .addFallbackPredicate(AbstractServerPredicate.alwaysTrue())
+                .build();
     }
 
     @Override
